@@ -50,3 +50,20 @@ getChildren <- function(current, xSize, ySize) {
   
   return (children)
 }
+
+
+next_package = function(roads, car, packages) {
+  x = car$x
+  y = car$y
+  distance_vector = h_cost(packages[,1], x, 
+                           packages[,2], y)
+  for (package in 1:5) {
+    min_dist = Inf
+    next_pickup = 0
+    if (packages[package, 5] == 0 &
+        distance_vector[package] < min_dist) {
+      min_dist = distance_vector[package]
+      next_pickup = package
+    }
+  }
+  return (next_pickup)
